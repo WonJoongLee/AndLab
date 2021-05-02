@@ -114,8 +114,14 @@ class MainActivity : AppCompatActivity() {
             onDessertClicked()
         }
 
-        //dessertTimer = DessertTimer(this.lifecycle)
-        DessertTimer(this.lifecycle)
+        dessertTimer = DessertTimer(this.lifecycle)
+        //DessertTimer(this.lifecycle)
+        if (savedInstanceState != null) { // savedInstanceState가 null이 아니면 다시 생성되는 것임을 알 수 있다.
+            revenue = savedInstanceState.getInt(KEY_REVENUE, 0)
+            dessertsSold = savedInstanceState.getInt(KEY_DESSERT_SOLD, 0)
+            dessertTimer.secondsCount = savedInstanceState.getInt(KEY_TIMER_SECONDS, 0)
+            showCurrentDessert()
+        }
 
         // Set the TextViews to the right values
         binding.revenue = revenue
@@ -125,6 +131,9 @@ class MainActivity : AppCompatActivity() {
         binding.dessertButton.setImageResource(currentDessert.imageId)
     }
 
+    /**
+     * 이 부분을 주석처리한다면 화면이 회전되었을 때 값이 유지가 되지 않는다.
+     */
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
 
