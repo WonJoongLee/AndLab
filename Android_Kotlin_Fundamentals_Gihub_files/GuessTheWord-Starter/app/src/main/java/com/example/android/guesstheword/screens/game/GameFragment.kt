@@ -36,9 +36,6 @@ class GameFragment : Fragment() {
 
     // ViewModel과 연결
     private lateinit var viewModel: GameViewModel
-
-
-
     private lateinit var binding: GameFragmentBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -55,7 +52,6 @@ class GameFragment : Fragment() {
         // ViewModel 호출, GameFragment context와 GameViewModel class를 넘겨준다.
         Log.i("GameFragment", "Called ViewModelProvider.get")
         viewModel = ViewModelProvider(this).get(GameViewModel::class.java)
-
 
         binding.correctButton.setOnClickListener { onCorrect() }
         binding.skipButton.setOnClickListener { onSkip() }
@@ -80,21 +76,21 @@ class GameFragment : Fragment() {
 
     /** Methods for updating the UI **/
     private fun updateWordText() {
-        binding.wordText.text = viewModel.word
+        binding.wordText.text = viewModel.word.value
     }
 
     private fun updateScoreText() {
-        binding.scoreText.text = viewModel.score.toString()
+        binding.scoreText.text = viewModel.score.value.toString()
     }
 
-    private fun onEndGame(){
+    private fun onEndGame() {
         gameFinished()
     }
 
-    private fun gameFinished(){
+    private fun gameFinished() {
         Toast.makeText(activity, "Game has just finished", Toast.LENGTH_SHORT).show()
         val action = GameFragmentDirections.actionGameToScore()
-        action.score = viewModel.score
+        action.score = viewModel.score.value ?: 0
         NavHostFragment.findNavController(this).navigate(action)
     }
 }
