@@ -1,16 +1,23 @@
 package com.example.android.guesstheword.screens.game
 
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class GameViewModel : ViewModel() {
 
     // The current word
-    val word = MutableLiveData<String>() // Live Data type으로 바꿈.
+    // backing property 적용
+    private val _word = MutableLiveData<String>() // Live Data type으로 바꿈.
+    val word: LiveData<String>
+        get() = _word
 
     // The current score
-    val score = MutableLiveData<Int>() // Live Data type으로 바꿈.
+    // backing property 적용
+    private val _score = MutableLiveData<Int>() // Live Data type으로 바꿈.
+    val score: LiveData<Int>
+        get() = _score
 
     // The list of words - the front of the list is the next word to guess
     private lateinit var wordList: MutableList<String>
@@ -19,8 +26,8 @@ class GameViewModel : ViewModel() {
         Log.i("GameViewModel", "GameViewModel created!")
 
         // 초기화
-        word.value = ""
-        score.value = 0
+        _word.value = ""
+        _score.value = 0
 
         resetList()
         nextWord()
@@ -68,19 +75,19 @@ class GameViewModel : ViewModel() {
         if (wordList.isNotEmpty()) {
             //Select and remove a word from the list
             //word = wordList.removeAt(0)
-            word.value = wordList.removeAt(0)
+            _word.value = wordList.removeAt(0)
         }
         //updateWordText() 이 두 함수는 UI update이기 때문에 GameFragment에서 호출되어야 한다.
         //updateScoreText()
     }
 
     fun onSkip() {
-        score.value = (score.value)?.minus(1)
+        _score.value = (score.value)?.minus(1)
         nextWord()
     }
 
     fun onCorrect() {
-        score.value = (score.value)?.plus(1)
+        _score.value = (score.value)?.plus(1)
         nextWord()
     }
 
