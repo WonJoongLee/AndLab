@@ -24,6 +24,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
 import com.example.android.guesstheword.R
@@ -53,28 +54,37 @@ class GameFragment : Fragment() {
         Log.i("GameFragment", "Called ViewModelProvider.get")
         viewModel = ViewModelProvider(this).get(GameViewModel::class.java)
 
+        viewModel.score.observe(viewLifecycleOwner, Observer { newScore ->
+            binding.scoreText.text = newScore.toString()
+        })
+
+        viewModel.word.observe(viewLifecycleOwner, Observer { newWord->
+            binding.wordText.text = newWord
+        })
+
         binding.correctButton.setOnClickListener { onCorrect() }
         binding.skipButton.setOnClickListener { onSkip() }
         binding.endGameButton.setOnClickListener { onEndGame() }
-        updateScoreText()
-        updateWordText()
+        //updateScoreText()
+        //updateWordText()
         return binding.root
     }
 
     /** Methods for buttons presses **/
     private fun onSkip() {
         viewModel.onSkip() // viewModel의 onSkip 함수를 참조한다.
-        updateScoreText()
-        updateWordText()
+        //updateScoreText()
+        //updateWordText()
     }
 
     private fun onCorrect() {
         viewModel.onCorrect()
-        updateScoreText()
-        updateWordText()
+        //updateScoreText()
+        //updateWordText()
     }
 
     /** Methods for updating the UI **/
+    // updateWordText()와 updateScoreText()는 observer를 통해 update되기 때문에 더이상 사용할 필요가 없다.
     private fun updateWordText() {
         binding.wordText.text = viewModel.word.value
     }

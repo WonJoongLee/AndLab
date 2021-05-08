@@ -18,6 +18,10 @@ class GameViewModel : ViewModel() {
     init {
         Log.i("GameViewModel", "GameViewModel created!")
 
+        // 초기화
+        word.value = ""
+        score.value = 0
+
         resetList()
         nextWord()
     }
