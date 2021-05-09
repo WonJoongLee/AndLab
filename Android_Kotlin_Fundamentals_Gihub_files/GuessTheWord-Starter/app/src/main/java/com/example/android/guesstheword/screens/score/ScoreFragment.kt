@@ -23,6 +23,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentFactory
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import com.example.android.guesstheword.R
@@ -52,7 +53,11 @@ class ScoreFragment : Fragment() {
 
         viewModelFactory = ScoreViewModel.ScoreViewModelFactory(ScoreFragmentArgs.fromBundle(requireArguments()).score)
         viewModel = ViewModelProvider(this, viewModelFactory).get(ScoreViewModel::class.java)
-        binding.scoreText.text = viewModel.score.toString()
+        //binding.scoreText.text = viewModel.score.toString() // observer 추가로 삭제
+
+        viewModel.score.observe(viewLifecycleOwner, Observer{ newScore->
+            binding.scoreText.text = newScore.toString()
+        })
 
         return binding.root
     }
