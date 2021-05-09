@@ -25,6 +25,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentFactory
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.android.guesstheword.R
 import com.example.android.guesstheword.databinding.ScoreFragmentBinding
@@ -55,9 +56,20 @@ class ScoreFragment : Fragment() {
         viewModel = ViewModelProvider(this, viewModelFactory).get(ScoreViewModel::class.java)
         //binding.scoreText.text = viewModel.score.toString() // observer 추가로 삭제
 
-        viewModel.score.observe(viewLifecycleOwner, Observer{ newScore->
+        viewModel.score.observe(viewLifecycleOwner, Observer { newScore ->
             binding.scoreText.text = newScore.toString()
         })
+
+        viewModel.eventPlayAgain.observe(viewLifecycleOwner, Observer { playAgain ->
+            if (playAgain) {
+                findNavController().navigate(ScoreFragmentDirections.actionRestart())
+                viewModel.onPlayAgainComplete()
+            }
+        })
+
+        binding.playAgainButton.setOnClickListener{
+            viewModel.onPlayAgain()
+        }
 
         return binding.root
     }
