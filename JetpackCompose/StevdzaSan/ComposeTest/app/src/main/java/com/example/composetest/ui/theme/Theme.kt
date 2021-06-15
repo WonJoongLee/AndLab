@@ -27,6 +27,7 @@ private val LightColorPalette = lightColors(
     */
 )
 
+// If current android device theme is dark, it will return true from isSystemInDarkTheme()
 @Composable
 fun ComposeTestTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable() () -> Unit) {
     val colors = if (darkTheme) {
