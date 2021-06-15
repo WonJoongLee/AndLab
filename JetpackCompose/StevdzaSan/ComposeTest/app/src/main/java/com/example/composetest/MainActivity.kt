@@ -19,25 +19,10 @@ class MainActivity : ComponentActivity() {
             ComposeTestTheme { // this function is from Theme.kt
                 // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {
-                    //Greeting("Android")
-                    DefaultPreview()
                 }
             }
         }
     }
-}
-
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
-
-@Composable
-fun CustomText(text:String){
-    Text(
-        text = text,
-        style = Typography.h5
-    )
 }
 
 // When there is "Preview" annotation, it allow us to see composable inside the right split screen
@@ -45,9 +30,5 @@ fun CustomText(text:String){
 @Composable
 fun DefaultPreview() {
     ComposeTestTheme {
-        Column {
-            Greeting("Android")
-            CustomText(text = "Hello WonJoong")
-        }
     }
 }
