@@ -61,7 +61,7 @@ class ScoreFragment : Fragment() {
         })
 
         viewModel.eventPlayAgain.observe(viewLifecycleOwner, Observer { playAgain ->
-            if (playAgain) {
+            if (playAgain) { // onPlayAgain 값이 true로 변경되면 게임 다시 시작할 준비를 하는 것으로 생각.
                 findNavController().navigate(ScoreFragmentDirections.actionRestart())
                 viewModel.onPlayAgainComplete()
             }
