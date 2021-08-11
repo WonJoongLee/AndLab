@@ -27,6 +27,18 @@ private val LightColorPalette = lightColors(
     */
 )
 
+private val DarkColors = darkColors(
+    primary = Purple200,
+    primaryVariant = Purple700,
+    secondary = Teal200
+)
+
+private val LightColors = lightColors(
+    primary = Purple500,
+    primaryVariant = Purple700,
+    secondary = Teal200
+)
+
 @Composable
 fun JetpackComposeBasicsTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
@@ -38,10 +50,14 @@ fun JetpackComposeBasicsTheme(
         LightColorPalette
     }
 
-    MaterialTheme(
-        colors = colors,
-        typography = Typography,
-        shapes = Shapes,
-        content = content
-    )
+    MaterialTheme(colors = colors) {
+        content()
+    }
+
+//    MaterialTheme (
+//        colors = colors,
+//        typography = Typography,
+//        shapes = Shapes,
+//        content = content
+//    )
 }
