@@ -55,10 +55,10 @@ class ScoreFragment : Fragment() {
         viewModelFactory = ScoreViewModel.ScoreViewModelFactory(ScoreFragmentArgs.fromBundle(requireArguments()).score)
         viewModel = ViewModelProvider(this, viewModelFactory).get(ScoreViewModel::class.java)
         //binding.scoreText.text = viewModel.score.toString() // observer 추가로 삭제
-
-        viewModel.score.observe(viewLifecycleOwner, Observer { newScore ->
-            binding.scoreText.text = newScore.toString()
-        })
+        binding.scoreViewModel = viewModel
+        // Specify the fragment view as the lifecycle owner of the binding.
+        // This is used so that the binding can observe LiveData updates
+        binding.lifecycleOwner = viewLifecycleOwner
 
         viewModel.eventPlayAgain.observe(viewLifecycleOwner, Observer { playAgain ->
             if (playAgain) { // onPlayAgain 값이 true로 변경되면 게임 다시 시작할 준비를 하는 것으로 생각.
@@ -67,9 +67,9 @@ class ScoreFragment : Fragment() {
             }
         })
 
-        binding.playAgainButton.setOnClickListener{
-            viewModel.onPlayAgain()
-        }
+//        binding.playAgainButton.setOnClickListener{
+//            viewModel.onPlayAgain()
+//        }
 
         return binding.root
     }
