@@ -3,7 +3,6 @@ package com.wonjoong.android.customfancontroller
 import android.content.Context
 import android.graphics.*
 import android.util.AttributeSet
-import java.util.jar.Attributes
 import kotlin.math.cos
 import kotlin.math.min
 import kotlin.math.sin
