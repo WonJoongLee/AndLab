@@ -3,6 +3,7 @@ package com.wonjoong.android.customfancontroller
 import android.content.Context
 import android.graphics.*
 import android.util.AttributeSet
+import android.util.Log
 import kotlin.math.cos
 import kotlin.math.min
 import kotlin.math.sin
@@ -22,7 +23,6 @@ class DialView @JvmOverloads constructor(
             fanSpeedMediumColor = getColor(R.styleable.DialView_fanColor2, 0)
             fanSpeedMaxColor = getColor(R.styleable.DialView_fanColor3, 0)
         }
-        updateContentDescription()
     }
 
     private var fanSpeedLowColor = 0
@@ -43,11 +43,10 @@ class DialView @JvmOverloads constructor(
 
     override fun performClick(): Boolean {
         if(super.performClick()) return true
-
+        Log.e("click", "@@@")
         fanSpeed = fanSpeed.next()
         contentDescription = resources.getString(fanSpeed.label)
 
-        updateContentDescription()
         invalidate() // call onDraw() to redraw the view
         return true
     }
@@ -90,9 +89,6 @@ class DialView @JvmOverloads constructor(
         y = (radius * sin(angle)).toFloat() + height / 2
     }
 
-    fun updateContentDescription() {
-        contentDescription = resources.getString(fanSpeed.label)
-    }
 }
 
 private enum class FanSpeed(val label: Int) {
