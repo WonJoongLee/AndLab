@@ -6,6 +6,7 @@ import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.ImageProxy
@@ -18,6 +19,7 @@ import com.google.android.gms.tasks.Task
 import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.text.Text
 import com.google.mlkit.vision.text.TextRecognition
+import com.google.mlkit.vision.text.korean.KoreanTextRecognizerOptions
 import com.google.mlkit.vision.text.latin.TextRecognizerOptions
 import com.wonjoong.sandbox.R
 import com.wonjoong.sandbox.databinding.FragmentCameraBinding
@@ -28,23 +30,24 @@ import java.util.concurrent.Executors
 class CameraFragment : BaseFragment<FragmentCameraBinding>(R.layout.fragment_camera) {
 
     private val cameraExecutor = Executors.newSingleThreadExecutor()
+    private val requestPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { isGranted ->
+        if (isGranted) {
+            startCamera()
+        } else {
+            activity?.finish()
+        }
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         // Request camera permissions
-        if (allPermissionsGranted()) {
-            startCamera()
-        } else {
-            ActivityCompat.requestPermissions(
-                requireActivity(), REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS
-            )
-        }
+        requestPermission()
     }
 
-    private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
-        ContextCompat.checkSelfPermission(
-            requireContext(), it
-        ) == PackageManager.PERMISSION_GRANTED
+    private fun requestPermission() {
+        requestPermissionLauncher.launch(Manifest.permission.CAMERA)
     }
 
     private fun startCamera() {
@@ -96,7 +99,9 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>(R.layout.fragment_cam
     private class CustomImageAnalyzer(
         private val setRecognizedText: (String) -> Unit
     ) : ImageAnalysis.Analyzer {
-        private val recognizer = TextRecognition.getClient(TextRecognizerOptions.DEFAULT_OPTIONS)
+
+        private val recognitionKoreanOption = KoreanTextRecognizerOptions.Builder().build()
+        private val recognizer = TextRecognition.getClient(recognitionKoreanOption)
 
         @SuppressLint("UnsafeOptInUsageError")
         override fun analyze(image: ImageProxy) {
@@ -121,7 +126,6 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>(R.layout.fragment_cam
             return recognizer.process(image)
         }
     }
-
 
     companion object {
         private const val TAG = "CameraXBasic"
