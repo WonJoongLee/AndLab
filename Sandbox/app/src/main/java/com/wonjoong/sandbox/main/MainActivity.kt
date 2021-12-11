@@ -2,6 +2,9 @@ package com.wonjoong.sandbox.main
 
 import android.os.Bundle
 import android.util.Log
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import com.wonjoong.sandbox.R
 import com.wonjoong.sandbox.databinding.ActivityMainBinding
 import com.wonjoong.sandbox.util.BaseAppCompatActivity
@@ -9,7 +12,16 @@ import com.wonjoong.sandbox.util.BaseAppCompatActivity
 class MainActivity : BaseAppCompatActivity<ActivityMainBinding>(R.layout.activity_main) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setNavigation()
+    }
+
+    private fun setNavigation() {
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.fcv_main) as NavHostFragment
+        val navController = navHostFragment.findNavController()
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        return Navigation.findNavController(this, R.id.fcv_main).navigateUp() || super.onSupportNavigateUp()
     }
 
     override fun onStart() {
