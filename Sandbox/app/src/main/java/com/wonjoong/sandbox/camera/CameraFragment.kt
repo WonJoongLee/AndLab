@@ -2,7 +2,6 @@ package com.wonjoong.sandbox.camera
 
 import android.Manifest
 import android.annotation.SuppressLint
-import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -12,7 +11,6 @@ import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.ImageProxy
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import com.google.android.gms.tasks.Task
@@ -20,7 +18,6 @@ import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.text.Text
 import com.google.mlkit.vision.text.TextRecognition
 import com.google.mlkit.vision.text.korean.KoreanTextRecognizerOptions
-import com.google.mlkit.vision.text.latin.TextRecognizerOptions
 import com.wonjoong.sandbox.R
 import com.wonjoong.sandbox.databinding.FragmentCameraBinding
 import com.wonjoong.sandbox.util.BaseFragment
@@ -68,7 +65,7 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>(R.layout.fragment_cam
                 }
             // 후면 카메라 Default 설정
             val cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
-            try {
+            runCatching {
                 // 다시 바인딩 하기 전에 unbind
                 cameraProvider.unbindAll()
                 // 카메라 바인딩
@@ -78,7 +75,7 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>(R.layout.fragment_cam
                     preview,
                     imageAnalyzer
                 )
-            } catch (exc: Exception) {
+            }.onFailure { exc ->
                 Log.e("Camera Fragment", "Use case binding failed", exc)
             }
             // 메인 쓰레드에서 도는 Executor 설정
