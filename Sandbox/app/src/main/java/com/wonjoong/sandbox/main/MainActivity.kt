@@ -12,12 +12,7 @@ import com.wonjoong.sandbox.util.BaseAppCompatActivity
 class MainActivity : BaseAppCompatActivity<ActivityMainBinding>(R.layout.activity_main) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setNavigation()
-    }
-
-    private fun setNavigation() {
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.fcv_main) as NavHostFragment
-        val navController = navHostFragment.findNavController()
+        log("onCreate()")
     }
 
     override fun onSupportNavigateUp(): Boolean {
