@@ -13,5 +13,8 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
         binding.btnCamera.setOnClickListener {
             findNavController().navigate(MainFragmentDirections.actionMainFragmentToCameraFragment())
         }
+        binding.btnCustomView.setOnClickListener {
+            findNavController().navigate(MainFragmentDirections.actionMainFragmentToCustomViewFragment())
+        }
     }
 }

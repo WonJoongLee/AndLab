@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_mainFragment_to_cameraFragment"
             app:destination="@id/cameraFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_customViewFragment"
+            app:destination="@id/customViewFragment" />
     </fragment>
 
     <fragment
@@ -20,5 +23,9 @@
         tools:layout="@layout/fragment_camera"
         android:name="com.wonjoong.sandbox.camera.CameraFragment"
         android:label="CameraFragment" />
+    <fragment
+        android:id="@+id/customViewFragment"
+        android:name="com.wonjoong.sandbox.customview.CustomViewFragment"
+        android:label="CustomViewFragment" />
 
 </navigation>
