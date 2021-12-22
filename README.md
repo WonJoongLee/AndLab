@@ -1,6 +1,7 @@
 # AndLab
-Playing with Android at this repository.
+Playing with Android.
 
+## Repository Content
 <table>
 <tr>
 <td>
