@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        tools:layout="@layout/fragment_main"
+        android:name="com.wonjoong.sandbox.main.MainFragment"
+        android:label="MainFragment" >
+        <action
+            android:id="@+id/action_mainFragment_to_cameraFragment"
+            app:destination="@id/cameraFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_customViewFragment"
+            app:destination="@id/customViewFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/cameraFragment"
+        tools:layout="@layout/fragment_camera"
+        android:name="com.wonjoong.sandbox.camera.CameraFragment"
+        android:label="CameraFragment" />
+    <fragment
+        android:id="@+id/customViewFragment"
+        android:name="com.wonjoong.sandbox.customview.CustomViewFragment"
+        android:label="CustomViewFragment" />
+
+</navigation>

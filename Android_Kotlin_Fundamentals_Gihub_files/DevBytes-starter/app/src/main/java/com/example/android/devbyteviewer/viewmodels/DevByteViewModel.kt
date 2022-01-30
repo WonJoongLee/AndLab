@@ -17,16 +17,13 @@
 package com.example.android.devbyteviewer.viewmodels
 
 import android.app.Application
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
+import com.example.android.devbyteviewer.database.getDatabase
 import com.example.android.devbyteviewer.domain.DevByteVideo
 import com.example.android.devbyteviewer.network.DevByteNetwork
 import com.example.android.devbyteviewer.network.asDomainModel
-import kotlinx.coroutines.*
+import com.example.android.devbyteviewer.repository.VideosRepository
+import kotlinx.coroutines.launch
 import java.io.IOException
 
 /**
@@ -41,19 +38,18 @@ import java.io.IOException
  */
 class DevByteViewModel(application: Application) : AndroidViewModel(application) {
 
-    /**
-     * A playlist of videos that can be shown on the screen. This is private to avoid exposing a
-     * way to set this value to observers.
-     */
-    private val _playlist = MutableLiveData<List<DevByteVideo>>()
-
-    /**
-     * A playlist of videos that can be shown on the screen. Views should use this to get access
-     * to the data.
-     */
-    val playlist: LiveData<List<DevByteVideo>>
-        get() = _playlist
-
+//    /**
+//     * A playlist of videos that can be shown on the screen. This is private to avoid exposing a
+//     * way to set this value to observers.
+//     */
+//    private val _playlist = MutableLiveData<List<DevByteVideo>>()
+//
+//    /**
+//     * A playlist of videos that can be shown on the screen. Views should use this to get access
+//     * to the data.
+//     */
+//    val playlist: LiveData<List<DevByteVideo>>
+//        get() = _playlist
 
 
     /**
@@ -82,11 +78,18 @@ class DevByteViewModel(application: Application) : AndroidViewModel(application)
     val isNetworkErrorShown: LiveData<Boolean>
         get() = _isNetworkErrorShown
 
+    private val videosRepository = VideosRepository(getDatabase(application))
+
+    // videos는 Room에서 Livedata를 감시하고 있기 때문에 실시간으로 업데이트가 된다
+    // 하지만 flow를 사용하는 것이 더 맞는 방법인 것 같은데..
+    val playlist = videosRepository.videos
+
     /**
      * init{} is called immediately when this ViewModel is created.
      */
     init {
-        refreshDataFromNetwork()
+        //refreshDataFromNetwork()
+        refreshDataFromRepository()
     }
 
     /**
@@ -96,8 +99,8 @@ class DevByteViewModel(application: Application) : AndroidViewModel(application)
     private fun refreshDataFromNetwork() = viewModelScope.launch {
 
         try {
-             val playlist = DevByteNetwork.devbytes.getPlaylist()
-            _playlist.postValue(playlist.asDomainModel())
+            val playlist = DevByteNetwork.devbytes.getPlaylist()
+            //_playlist.postValue(playlist.asDomainModel())
 
             _eventNetworkError.value = false
             _isNetworkErrorShown.value = false
@@ -105,6 +108,20 @@ class DevByteViewModel(application: Application) : AndroidViewModel(application)
         } catch (networkError: IOException) {
             // Show a Toast error message and hide the progress bar.
             _eventNetworkError.value = true
+        }
+    }
+
+    // Repository부터 refresh 값 받아오기
+    private fun refreshDataFromRepository() {
+        viewModelScope.launch {
+            try {
+                videosRepository.refreshVideos()
+                _eventNetworkError.value = false
+                _isNetworkErrorShown.value = false
+            } catch (networkError: IOException) {
+                // 에러 메시지 띄우고 progress bar 숨기기
+                if (playlist.value.isNullOrEmpty()) _eventNetworkError.value = true
+            }
         }
     }
 

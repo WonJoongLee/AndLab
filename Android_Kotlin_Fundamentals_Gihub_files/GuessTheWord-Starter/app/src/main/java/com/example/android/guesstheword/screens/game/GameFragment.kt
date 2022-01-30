@@ -54,39 +54,42 @@ class GameFragment : Fragment() {
         Log.i("GameFragment", "Called ViewModelProvider.get")
         viewModel = ViewModelProvider(this).get(GameViewModel::class.java)
 
-        viewModel.score.observe(viewLifecycleOwner, Observer { newScore ->
-            binding.scoreText.text = newScore.toString()
-        })
-
-        viewModel.word.observe(viewLifecycleOwner, Observer { newWord ->
-            binding.wordText.text = newWord
-        })
+        // Set the viewmodel for databinding - this allows the bound layout access
+        // to all the data in the ViewModel
+        binding.gameViewModel = viewModel
+        // Specify the fragment view as the lifecycle owner of the binding.
+        // This is used so that the binding can observe LiveData updates
+        binding.lifecycleOwner = viewLifecycleOwner
 
         // Observer for the Game finished event
         viewModel.eventGameFinish.observe(viewLifecycleOwner, Observer<Boolean> { hasFinished ->
             if (hasFinished) gameFinished()
         })
 
-        binding.correctButton.setOnClickListener { onCorrect() }
-        binding.skipButton.setOnClickListener { onSkip() }
-        binding.endGameButton.setOnClickListener { onEndGame() }
+//        binding.correctButton.setOnClickListener { onCorrect() }
+//        binding.skipButton.setOnClickListener { onSkip() }
+//        binding.endGameButton.setOnClickListener { onEndGame() }
         //updateScoreText()
         //updateWordText()
         return binding.root
     }
 
     /** Methods for buttons presses **/
-    private fun onSkip() {
-        viewModel.onSkip() // viewModel의 onSkip 함수를 참조한다.
-        //updateScoreText()
-        //updateWordText()
-    }
-
-    private fun onCorrect() {
-        viewModel.onCorrect()
-        //updateScoreText()
-        //updateWordText()
-    }
+//    private fun onSkip() {
+//        viewModel.onSkip() // viewModel의 onSkip 함수를 참조한다.
+//        //updateScoreText()
+//        //updateWordText()
+//    }
+//
+//    private fun onCorrect() {
+//        viewModel.onCorrect()
+//        //updateScoreText()
+//        //updateWordText()
+//    }
+//
+//    private fun onEndGame() {
+//        gameFinished()
+//    }
 
     /** Methods for updating the UI **/
     // updateWordText()와 updateScoreText()는 observer를 통해 update되기 때문에 더이상 사용할 필요가 없다.
@@ -98,9 +101,6 @@ class GameFragment : Fragment() {
         binding.scoreText.text = viewModel.score.value.toString()
     }
 
-    private fun onEndGame() {
-        gameFinished()
-    }
 
     private fun gameFinished() {
         Toast.makeText(activity, "Game has just finished", Toast.LENGTH_SHORT).show()
