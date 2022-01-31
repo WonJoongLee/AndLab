@@ -50,6 +50,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="@string/about_google_developer_groups"
+                android:textColor="#FF555555"
+                android:textSize="24sp"
                 app:layout_constraintEnd_toStartOf="@+id/end_guideline"
                 app:layout_constraintStart_toStartOf="@+id/start_guideline"
                 app:layout_constraintTop_toBottomOf="@id/image" />
@@ -59,6 +61,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:fontFamily="More Fonts..."
                 android:text="@string/gdg_description_long"
                 app:layout_constraintEnd_toStartOf="@+id/end_guideline"
                 app:layout_constraintStart_toStartOf="@+id/start_guideline"
@@ -70,6 +73,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="13dp"
                 android:text="@string/gdgs_are"
+                android:textSize="18sp"
+                android:textColor="#555555"
                 app:layout_constraintEnd_toStartOf="@id/end_guideline"
                 app:layout_constraintStart_toEndOf="@id/start_guideline"
                 app:layout_constraintTop_toBottomOf="@+id/intro_text" />
