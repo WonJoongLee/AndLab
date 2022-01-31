@@ -21,4 +21,9 @@ class RefreshDataWorker(appContext: Context, params: WorkerParameters) :
         }
         return Result.success()
     }
+
+    companion object {
+        // worker 이름(unique해야 함)
+        const val WORK_NAME = "com.example.android.devbyteviewer.work.RefreshDataWorker"
+    }
 }
