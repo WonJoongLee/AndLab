@@ -16,12 +16,16 @@
 
 <resources>
 
+    <!--android:fontFamily와 fontFamily 둘 다 적용해야 한다. parent에서 둘 다 정의해주고 있기 때문이다.-->
+
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:fontFamily">@font/lobster_two</item>
+        <item name="fontFamily">@font/lobster_two</item>
     </style>
 
 </resources>
