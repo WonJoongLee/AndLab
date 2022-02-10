@@ -46,14 +46,19 @@ import kotlinx.coroutines.launch
 
 private const val API_KEY = ""
 
-fun main() = Window {
-  var text by remember { mutableStateOf("Hello, World!") }
+fun main() = Window(
+    title = "Sunny Desk",
+    size = IntSize(800, 700)
+) {
+//    var text by remember { mutableStateOf("Hello, World!") }
+    val repository = Repository(API_KEY)
 
-  MaterialTheme {
-    Button(onClick = {
-      text = "Hello, Desktop!"
-    }) {
-      Text(text)
+    MaterialTheme {
+        WeatherScreen(repository)
+//    Button(onClick = {
+//      text = "Hello, Desktop!"
+//    }) {
+//      Text(text)
+//    }
     }
-  }
 }
