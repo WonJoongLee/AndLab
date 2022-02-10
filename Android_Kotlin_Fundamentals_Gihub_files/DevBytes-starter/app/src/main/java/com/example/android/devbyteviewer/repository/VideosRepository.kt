@@ -35,7 +35,7 @@ class VideosRepository(private val database: VideosDatabase) {
 
     // 오프라인 캐시를 refresh하기 위한 함수
     suspend fun refreshVideos() {
-        withContext(Dispatchers.IO) {
+        withContext(Dispatchers.    IO) {
             Timber.d("refresh videos is called")
             val playlist = DevByteNetwork.devbytes.getPlaylist()
             database.videoDao.insertAll(playlist.asDatabaseModel())
