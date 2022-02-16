@@ -1,24 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5620b9ca-9518-4440-9757-0150e5379b4e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Android_Kotlin_Fundamentals_Gihub_files/AndroidTrivia-Starter/app/src/main/res/menu/navdrawer_menu.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Android_Kotlin_Fundamentals_Gihub_files/AndroidTrivia-Starter/app/src/main/res/menu/options_menu.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Android_Kotlin_Fundamentals_Gihub_files/AndroidTrivia-Starter/app/src/main/res/navigation/navigation.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Android_Kotlin_Fundamentals_Gihub_files/DessertClicker-Starter/app/src/main/java/com/example/android/dessertclicker/ClickerApplication.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Android_Kotlin_Fundamentals_Gihub_files/AndroidTrivia-Starter/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/Android_Kotlin_Fundamentals_Gihub_files/AndroidTrivia-Starter/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Android_Kotlin_Fundamentals_Gihub_files/AndroidTrivia-Starter/app/src/main/java/com/example/android/navigation/GameFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/Android_Kotlin_Fundamentals_Gihub_files/AndroidTrivia-Starter/app/src/main/java/com/example/android/navigation/GameFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Android_Kotlin_Fundamentals_Gihub_files/AndroidTrivia-Starter/app/src/main/java/com/example/android/navigation/GameOverFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/Android_Kotlin_Fundamentals_Gihub_files/AndroidTrivia-Starter/app/src/main/java/com/example/android/navigation/GameOverFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Android_Kotlin_Fundamentals_Gihub_files/AndroidTrivia-Starter/app/src/main/java/com/example/android/navigation/GameWonFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/Android_Kotlin_Fundamentals_Gihub_files/AndroidTrivia-Starter/app/src/main/java/com/example/android/navigation/GameWonFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Android_Kotlin_Fundamentals_Gihub_files/AndroidTrivia-Starter/app/src/main/java/com/example/android/navigation/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/Android_Kotlin_Fundamentals_Gihub_files/AndroidTrivia-Starter/app/src/main/java/com/example/android/navigation/MainActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Android_Kotlin_Fundamentals_Gihub_files/AndroidTrivia-Starter/app/src/main/java/com/example/android/navigation/TitleFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/Android_Kotlin_Fundamentals_Gihub_files/AndroidTrivia-Starter/app/src/main/java/com/example/android/navigation/TitleFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Android_Kotlin_Fundamentals_Gihub_files/AndroidTrivia-Starter/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Android_Kotlin_Fundamentals_Gihub_files/AndroidTrivia-Starter/app/src/main/res/layout/activity_main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Android_Kotlin_Fundamentals_Gihub_files/AndroidTrivia-Starter/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/Android_Kotlin_Fundamentals_Gihub_files/AndroidTrivia-Starter/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Android_Kotlin_Fundamentals_Gihub_files/DessertClicker-Starter/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/Android_Kotlin_Fundamentals_Gihub_files/DessertClicker-Starter/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Android_Kotlin_Fundamentals_Gihub_files/DessertClicker-Starter/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Android_Kotlin_Fundamentals_Gihub_files/DessertClicker-Starter/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Android_Kotlin_Fundamentals_Gihub_files/DessertClicker-Starter/app/src/main/java/com/example/android/dessertclicker/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/Android_Kotlin_Fundamentals_Gihub_files/DessertClicker-Starter/app/src/main/java/com/example/android/dessertclicker/MainActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
-    </list>
+    <list default="true" id="5620b9ca-9518-4440-9757-0150e5379b4e" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -28,13 +11,18 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1rw7kyM0vl67xvwPunDj0TidsEc" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="RunOnceActivity.cidr.known.project.marker" value="true" />
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
+    <property name="cidr.known.project.marker" value="true" />
+    <property name="dart.analysis.tool.window.visible" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Coroutine/Kotlin-Coroutine-Use-Cases-on-Android" />
     <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
   </component>
   <component name="SvnConfiguration">
@@ -49,11 +37,5 @@
       <updated>1619875444225</updated>
     </task>
     <servers />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="1220" y="275" key="FileChooserDialogImpl" timestamp="1619875501464">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="1220" y="275" key="FileChooserDialogImpl/-1080.-289.1080.1880/0.0.1920.1040@0.0.1920.1040" timestamp="1619875501464" />
   </component>
 </project>
