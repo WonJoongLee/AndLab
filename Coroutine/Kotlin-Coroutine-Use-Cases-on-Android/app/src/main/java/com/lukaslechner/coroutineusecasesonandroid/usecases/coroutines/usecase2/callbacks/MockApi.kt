@@ -6,9 +6,12 @@ import com.lukaslechner.coroutineusecasesonandroid.mock.VersionFeatures
 import com.lukaslechner.coroutineusecasesonandroid.mock.mockAndroidVersions
 import com.lukaslechner.coroutineusecasesonandroid.mock.mockVersionFeaturesAndroid10
 import com.lukaslechner.coroutineusecasesonandroid.utils.MockNetworkInterceptor
+import io.reactivex.Single
+import io.reactivex.schedulers.Schedulers
 import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Retrofit
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -32,10 +35,10 @@ fun mockApi(): CallbackMockApi = createMockApi(
 interface CallbackMockApi {
 
     @GET("recent-android-versions")
-    fun getRecentAndroidVersions(): Call<List<AndroidVersion>>
+    fun getRecentAndroidVersions(): Single<List<AndroidVersion>>
 
     @GET("android-version-features/{apiLevel}")
-    fun getAndroidVersionFeatures(@Path("apiLevel") apiLevel: Int): Call<VersionFeatures>
+    fun getAndroidVersionFeatures(@Path("apiLevel") apiLevel: Int): Single<VersionFeatures>
 }
 
 fun createMockApi(interceptor: MockNetworkInterceptor): CallbackMockApi {
@@ -47,6 +50,7 @@ fun createMockApi(interceptor: MockNetworkInterceptor): CallbackMockApi {
         .baseUrl("http://localhost/")
         .client(okHttpClient)
         .addConverterFactory(GsonConverterFactory.create())
+        .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
         .build()
 
     return retrofit.create(CallbackMockApi::class.java)
