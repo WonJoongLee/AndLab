@@ -40,7 +40,6 @@ class VariableAmountOfNetworkRequestsViewModel(
                     }
                 }.awaitAll()
                 uiState.value = UiState.Success(versionFeatures)
-                //val deferredList = recentVersions.ma
             } catch (e: Exception) {
                 uiState.value = UiState.Error("Network Request failed")
             }
