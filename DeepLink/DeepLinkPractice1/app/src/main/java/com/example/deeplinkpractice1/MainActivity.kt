@@ -13,7 +13,9 @@ class MainActivity : AppCompatActivity() {
 
         val moveBtn = findViewById<TextView>(R.id.btn_move)
         moveBtn.setOnClickListener {
-            this.startActivity(Intent(Intent.ACTION_VIEW).apply { data = Uri.parse("isaac://deeplink/goToSecondActivity") })
+            this.startActivity(Intent(Intent.ACTION_VIEW).apply {
+                data = Uri.parse("isaac://deeplink/goToSecondActivity")
+            })
         }
     }
 }
