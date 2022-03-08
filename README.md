@@ -20,3 +20,4 @@ Camera with machine learning, simple custom view
 </td>
 </tr>
 </table>
+Slack Connection Test
