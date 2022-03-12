@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
-    private val adapter = ImagePagingAdapter()
+    private lateinit var pagingAdapter: ImagePagingAdapter
     private lateinit var binding: ActivityMainBinding
     private val viewModel: MainViewModel by viewModels()
 
@@ -21,15 +21,26 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.rvMain.adapter = adapter
+        initAdapter()
         collectImage()
+
+        // network 네트워크 연결이 되지 않았을 때도 app inspection에서 디비를 보고싶으면
+        // 아래 주석을 해제하면 된다.
+        // openOrCreateDatabase("localImage.db", MODE_PRIVATE, null)
+    }
+
+    private fun initAdapter() {
+        pagingAdapter = ImagePagingAdapter(viewModel::deleteImage)
+        binding.rvMain.adapter = pagingAdapter
     }
 
     private fun collectImage() {
         lifecycleScope.launchWhenStarted {
             viewModel.imageDataFlow.collect { newImageDataList ->
-                adapter.submitData(newImageDataList)
+                pagingAdapter.submitData(newImageDataList)
             }
         }
     }
+
+
 }

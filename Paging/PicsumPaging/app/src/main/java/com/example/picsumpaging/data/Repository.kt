@@ -6,4 +6,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface Repository {
     fun getImagePagingData(): Flow<PagingData<ImageData>>
+    suspend fun deleteImage(id: String)
 }

@@ -24,6 +24,16 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:src="@drawable/ic_launcher_background" />
 
+        <TextView
+            android:id="@+id/tv_url"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_image" />
+
         <ImageView
             android:id="@+id/iv_trash"
             android:layout_width="wrap_content"
@@ -31,7 +41,7 @@
             android:src="@drawable/ic_baseline_restore_from_trash_24"
             app:layout_constraintEnd_toStartOf="@id/iv_add"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_image" />
+            app:layout_constraintTop_toBottomOf="@id/tv_url" />
 
         <ImageView
             android:id="@+id/iv_add"
@@ -40,7 +50,7 @@
             android:src="@drawable/ic_baseline_add_24"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/iv_trash"
-            app:layout_constraintTop_toBottomOf="@id/iv_image" />
+            app:layout_constraintTop_toBottomOf="@id/tv_url" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
