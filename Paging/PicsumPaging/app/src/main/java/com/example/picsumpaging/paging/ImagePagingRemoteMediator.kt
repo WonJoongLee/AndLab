@@ -1,6 +1,5 @@
 package com.example.picsumpaging.paging
 
-import android.util.Log
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
 import androidx.paging.PagingState
@@ -19,29 +18,17 @@ class ImagePagingRemoteMediator(
     private val imagesDao = localDatabase.getLocalImageDao()
     private val keysDao = localDatabase.getKeysDao()
 
-//    override suspend fun initialize(): InitializeAction {
-//        Log.e("@@@initialize", "init")
-//        // 데이터가 오래됐으면 리프레시한다.
-//        return InitializeAction.LAUNCH_INITIAL_REFRESH
-//    }
-
     override suspend fun load(
         loadType: LoadType,
         state: PagingState<Int, ImageData>
     ): MediatorResult {
-        Log.e("@@@mediator load in", ".$loadType /// $state")
         return try {
-            Log.e("@@@loadType", ".$loadType")
             val page: Int = when (loadType) {
                 LoadType.REFRESH -> {
-                    Log.e("@@@refresh", "refresh")
-                    //val remoteKeys = getFirstRemoteKey(state)
-                    //null
                     val remoteKeys = getRemoteKeyClosestToCurrentPosition(state)
                     remoteKeys?.nextKey?.minus(1) ?: 1
                 }
                 LoadType.PREPEND -> {
-                    Log.e("@@@prepend", "prepend")
                     val remoteKeys = getFirstRemoteKey(state)
                     val prevKey = remoteKeys?.prevKey ?: return MediatorResult.Success(
                         endOfPaginationReached = remoteKeys != null
@@ -49,7 +36,6 @@ class ImagePagingRemoteMediator(
                     prevKey
                 }
                 LoadType.APPEND -> {
-                    Log.e("@@@append", "append")
                     val remoteKeys = getLastRemoteKey(state)
                     val nextKey = remoteKeys?.nextKey ?: return MediatorResult.Success(
                         endOfPaginationReached = remoteKeys != null
@@ -58,7 +44,6 @@ class ImagePagingRemoteMediator(
                 }
             }
 
-            Log.e("@@@page", ".$page")
             val response = api.getImages(page, state.config.pageSize)
             val isEndOfList = response.isNullOrEmpty()
 
@@ -73,8 +58,7 @@ class ImagePagingRemoteMediator(
                 val keys = response.map {
                     RemoteKey(it.id, prevKey = prevKey, nextKey = nextKey)
                 }
-                Log.e("@@@keys", ".$keys")
-                keysDao.insertAll(remoteKey =  keys)
+                keysDao.insertAll(remoteKey = keys)
                 imagesDao.insertAll(images = response)
             }
             MediatorResult.Success(endOfPaginationReached = isEndOfList)

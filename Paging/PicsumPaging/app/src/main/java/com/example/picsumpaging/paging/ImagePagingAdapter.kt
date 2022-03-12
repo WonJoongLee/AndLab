@@ -42,7 +42,6 @@ class ImagePagingAdapter @Inject constructor(
         }
 
         fun bind(imageData: ImageData) {
-            // Log.e("url", ".${imageData.url}")
             this.imageData = imageData
             // 사진 불러오는데 시간이 너무 오래 걸려서 뺴버림
 //            Glide.with(binding.root)

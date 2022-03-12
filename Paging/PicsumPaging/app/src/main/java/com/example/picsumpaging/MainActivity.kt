@@ -1,9 +1,8 @@
 package com.example.picsumpaging
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
-import androidx.databinding.DataBindingUtil
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.picsumpaging.databinding.ActivityMainBinding
 import com.example.picsumpaging.paging.ImagePagingAdapter

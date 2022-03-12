@@ -1,6 +1,5 @@
 package com.example.picsumpaging.paging
 
-import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.picsumpaging.data.PicsumApi
@@ -12,16 +11,10 @@ class ImagePagingSource @Inject constructor(
 ) : PagingSource<Int, ImageData>() {
 
     override fun getRefreshKey(state: PagingState<Int, ImageData>): Int? {
-        Log.e("@@@getRefKey", ".$state")
         return state.anchorPosition
-//            ?.let { anchorPosition ->
-//            state.closestPageToPosition(anchorPosition)?.prevKey?.plus(1)
-//                ?: state.closestPageToPosition(anchorPosition)?.nextKey?.minus(1)
-//        }
     }
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, ImageData> {
-        Log.e("@@@paging load in", ".$params")
         return try {
             val page = params.key ?: 1
             val response = pcisumApi.getImages(page = page, limit = params.loadSize)
