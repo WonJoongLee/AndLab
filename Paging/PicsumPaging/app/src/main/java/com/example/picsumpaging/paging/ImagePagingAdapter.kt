@@ -1,6 +1,5 @@
 package com.example.picsumpaging.paging
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
@@ -8,9 +7,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.example.picsumpaging.R
-import com.example.picsumpaging.data.Repository
 import com.example.picsumpaging.databinding.ItemImageBinding
 import com.example.picsumpaging.paging.item.ImageData
 import javax.inject.Inject

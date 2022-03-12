@@ -1,17 +1,13 @@
 package com.example.picsumpaging.di
 
-import android.content.Context
 import androidx.paging.ExperimentalPagingApi
-import androidx.room.Room
 import com.example.picsumpaging.data.PicsumApi
 import com.example.picsumpaging.data.Repository
 import com.example.picsumpaging.data.RepositoryImpl
-import com.example.picsumpaging.data.local.LocalImageDatabase
 import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
