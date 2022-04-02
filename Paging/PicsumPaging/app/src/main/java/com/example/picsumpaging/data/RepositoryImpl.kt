@@ -6,7 +6,6 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.example.picsumpaging.data.local.LocalImageDatabase
 import com.example.picsumpaging.paging.ImagePagingRemoteMediator
-import com.example.picsumpaging.paging.ImagePagingSource
 import com.example.picsumpaging.paging.item.ImageData
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
