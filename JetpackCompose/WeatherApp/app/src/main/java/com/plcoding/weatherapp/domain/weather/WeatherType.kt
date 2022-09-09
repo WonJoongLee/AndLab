@@ -3,6 +3,10 @@ package com.plcoding.weatherapp.domain.weather
 import androidx.annotation.DrawableRes
 import com.plcoding.weatherapp.R
 
+/**
+ * 서버에서 받아온 값을 Int형태로 들고 있기보다는 이런 식으로 Type으로 들고 있으면 더 좋다.
+ * 가독성이 좋다.
+ */
 sealed class WeatherType(
     val weatherDesc: String,
     @DrawableRes val iconRes: Int
