@@ -3,10 +3,13 @@
     package="com.plcoding.weatherapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <!-- 러프한 로케이션 확인용 -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!-- 디테일한 로케이션 확인용 -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
+        android:name=".WeatherApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
