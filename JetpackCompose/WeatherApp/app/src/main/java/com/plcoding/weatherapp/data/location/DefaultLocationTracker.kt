@@ -6,6 +6,7 @@ import android.content.pm.PackageManager
 import android.location.Location
 import android.location.LocationManager.GPS_PROVIDER
 import android.location.LocationManager.NETWORK_PROVIDER
+import android.util.Log
 import androidx.core.content.ContextCompat
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.plcoding.weatherapp.domain.location.LocationTracker
@@ -32,25 +33,34 @@ class DefaultLocationTracker @Inject constructor(
             application.getSystemService(Application.LOCATION_SERVICE) as android.location.LocationManager
         val isGpsEnabled = locationManager.isProviderEnabled(NETWORK_PROVIDER) ||
                 locationManager.isProviderEnabled(GPS_PROVIDER)
-        if (!hasAccessFineLocationPermission || !hasAccessCoarseLocationPermission || !isGpsEnabled) {
+        Log.e("@@@fine", "$hasAccessFineLocationPermission")
+        Log.e("coarse", "$hasAccessCoarseLocationPermission")
+        Log.e("@@@gpsEnabled", ".$isGpsEnabled")
+        if ((!hasAccessFineLocationPermission && !hasAccessCoarseLocationPermission) || !isGpsEnabled) {
+            Log.e("@@@return", "null")
             return null
         }
         // callback을 suspending coroutine으로 바꿀 수 있다.
         return suspendCancellableCoroutine { cont -> // cont는 continuation
+//            Log.e("@@@last", ".${locationClient.lastLocation.result}")
             locationClient.lastLocation.apply {
                 // 위에 task라고 뜨는데 이는 async형식이어서 바로 location을 반환하는 것이 아니다.
                 if (isComplete) {
                     if (isSuccessful) {
+                        Log.e("@@@result", "${result}")
                         cont.resume(result)
                     } else {
+                        Log.e("@@@isSuccess", "null")
                         cont.resume(null)
                     }
                     return@suspendCancellableCoroutine
                 }
                 addOnSuccessListener {
+                    Log.e("@@@succeslistener", ".$it")
                     cont.resume(it)
                 }
                 addOnFailureListener {
+                    Log.e("@@@failure", "null")
                     cont.resume(null)
                 }
                 addOnCanceledListener {
