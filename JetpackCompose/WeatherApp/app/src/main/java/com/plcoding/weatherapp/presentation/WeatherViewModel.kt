@@ -5,6 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.plcoding.weatherapp.R
 import com.plcoding.weatherapp.data.location.DefaultLocationTracker
 import com.plcoding.weatherapp.domain.repository.WeatherRepository
 import com.plcoding.weatherapp.domain.util.Resource
@@ -21,6 +22,28 @@ class WeatherViewModel @Inject constructor(
     var state by mutableStateOf(WeatherState())
         private set
 
+    var sheetState by mutableStateOf(SurveyState())
+        private set
+
+    init {
+        sheetState = sheetState.copy(
+            firstQuestion = "Have a great day, this is first question."
+        )
+    }
+
+    fun showSecondQuestion() {
+        sheetState = sheetState.copy(
+            firstQuestion = "Have a great day, this is first question.",
+            secondQuestion = "Good morning, this is second question."
+        )
+    }
+
+    fun changeVisibility() {
+        sheetState = sheetState.copy(
+            isIconVisible = !sheetState.isIconVisible
+        )
+    }
+
     fun loadWeatherInfo() {
         viewModelScope.launch {
             state = state.copy(
@@ -30,7 +53,7 @@ class WeatherViewModel @Inject constructor(
             locationTracker.getCurrentLocation()?.let { location ->
                 when (
                     val result = repository.getWeatherData(location.latitude, location.longitude)
-                 ) {
+                ) {
                     is Resource.Success -> {
                         state = state.copy(
                             weatherInfo = result.data,
