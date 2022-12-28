@@ -3,6 +3,7 @@ package com.isaac
 import io.ktor.server.application.*
 import com.isaac.plugins.*
 
+// 런치되는 부분
 fun main(args: Array<String>): Unit =
     io.ktor.server.netty.EngineMain.main(args)
 
