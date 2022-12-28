@@ -1,11 +1,11 @@
-package com.plcoding.onlinetictactoe.data
+package com.wonjoong.tictactoe.data
 
 import kotlinx.serialization.Serializable
 
 @Serializable
 data class GameState(
-    val playerAtTurn: Char? = 'X',
-    val field: Array<Array<Char?>> = emptyField(),
+    val playerAtTurn: Char? = 'X', // X, O, null
+    val field: Array<Array<Char?>> = emptyField(), // 보드 판
     val winningPlayer: Char? = null,
     val isBoardFull: Boolean = false,
     val connectedPlayers: List<Char> = emptyList()
@@ -15,7 +15,7 @@ data class GameState(
             return arrayOf(
                 arrayOf(null, null, null),
                 arrayOf(null, null, null),
-                arrayOf(null, null, null),
+                arrayOf(null, null, null)
             )
         }
     }

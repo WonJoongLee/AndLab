@@ -1,4 +1,4 @@
-package com.plcoding.onlinetictactoe
+package com.wonjoong.tictactoe
 
 import org.junit.Test
 

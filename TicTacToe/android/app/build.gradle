@@ -7,11 +7,11 @@ plugins {
 }
 
 android {
-    namespace 'com.plcoding.onlinetictactoe'
+    namespace 'com.wonjoong.tictactoe'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.plcoding.onlinetictactoe"
+        applicationId "com.wonjoong.tictactoe"
         minSdk 24
         targetSdk 33
         versionCode 1

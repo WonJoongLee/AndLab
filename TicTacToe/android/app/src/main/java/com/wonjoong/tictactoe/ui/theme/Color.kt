@@ -1,4 +1,4 @@
-package com.plcoding.onlinetictactoe.ui.theme
+package com.wonjoong.tictactoe.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
