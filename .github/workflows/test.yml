@@ -1,0 +1,12 @@
+name: test work
+on:
+  repository_dispatch:
+    types:
+      - configuration-check
+jobs:
+  check:
+    name: Run test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Say hello
+        run: echo Hello
