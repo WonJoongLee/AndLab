@@ -2,7 +2,7 @@ name: test work
 on:
   repository_dispatch:
     types:
-      - configuration-check
+      - test
 jobs:
   check:
     name: Run test
