@@ -1,5 +1,11 @@
 name: test2_name
 on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Target environment'
+        required: true
+        default: 'production'
   repository_dispatch:
     types:
       - configuration-check
